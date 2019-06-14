@@ -8,7 +8,38 @@ import { AlertController } from '@ionic/angular';
 })
 export class AlertPage implements OnInit {
 
+  titulo : string;
   constructor(public alertCtrl: AlertController) { }
+
+  async presentInput(){
+    const input = await this.alertCtrl.create({
+      header: 'Input',
+      subHeader: 'Ingrese su nombre:',
+      inputs:[
+        {
+          name: 'txtNombre',
+          type: 'number',
+          placeholder: 'Nombre'
+        }
+      ],
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          handler: () => {
+            console.log('Confirm Cancel');
+          }
+        }, {
+          text: 'Ok',
+          handler: ( data ) => {
+            console.log('Confirm Ok',data);
+            this.titulo = data.txtNombre;
+          }
+        }
+      ]
+    })
+    await input.present();
+  }
 
   async presentAlert() {
     const alert = await this.alertCtrl.create({
