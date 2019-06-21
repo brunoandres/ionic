@@ -18,7 +18,7 @@ export class AlertPage implements OnInit {
       inputs:[
         {
           name: 'txtNombre',
-          type: 'number',
+          type: 'text',
           placeholder: 'Nombre'
         }
       ],
